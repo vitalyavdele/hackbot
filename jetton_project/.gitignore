@@ -1,0 +1,5 @@
+!.gitignore
+!templates/
+!templates/index.html
+!requirements.txt
+!webapp.py
