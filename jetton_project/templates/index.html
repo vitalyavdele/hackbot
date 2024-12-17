@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jetton Mines Signals</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body { background-color: #1c1c2b; color: #fff; text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 20px auto; max-width: 300px; }
+        .cell { background-color: #4184f3; color: #fff; font-size: 24px; border-radius: 8px; padding: 10px; }
+        .safe { background-color: #ffc107; color: #1c1c2b; }
+    </style>
+</head>
+<body>
+    <h1>📊 Jetton Mines</h1>
+    <div class="grid" id="mines-grid">
+        <!-- Клетки будут добавляться динамически -->
+    </div>
+    <button class="btn btn-warning" onclick="generateSignal()">Получить сигнал</button>
+
+    <script>
+        function generateSignal() {
+            const grid = document.getElementById("mines-grid");
+            grid.innerHTML = "";
+            const safeCells = new Set();
+            while (safeCells.size < 7) {
+                safeCells.add(Math.floor(Math.random() * 25));
+            }
+            for (let i = 0; i < 25; i++) {
+                const cell = document.createElement("div");
+                cell.classList.add("cell");
+                if (safeCells.has(i)) {
+                    cell.textContent = "⭐️";
+                    cell.classList.add("safe");
+                }
+                grid.appendChild(cell);
+            }
+        }
+    </script>
+</body>
+</html>
