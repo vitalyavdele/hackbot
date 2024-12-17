@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HACK - Сигнал Mines</title>
+    <title>AI Hack Mines</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
+            background-color: #0f172a; /* Темный фон */
             margin: 0;
             padding: 0;
+            color: white;
             text-align: center;
         }
 
         h1 {
-            color: #333;
-            font-size: 26px;
+            color: #facc15; /* Желтый заголовок */
+            font-size: 28px;
             margin-top: 20px;
         }
 
@@ -31,7 +32,7 @@
         .cell {
             width: 40px;
             height: 40px;
-            background-color: #2196F3;
+            background-color: #3b82f6; /* Синий */
             color: white;
             display: flex;
             justify-content: center;
@@ -42,7 +43,7 @@
         }
 
         .cell.safe {
-            background-color: gold;
+            background-color: #facc15; /* Желтый для безопасных ячеек */
             color: #333;
         }
 
@@ -50,26 +51,29 @@
             margin-top: 20px;
             padding: 10px 20px;
             font-size: 18px;
-            background-color: #4CAF50;
+            background-color: #16a34a; /* Зеленая кнопка */
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #15803d;
         }
     </style>
 </head>
 <body>
-    <h1>Сигнал для игры Mines</h1>
+    <h1>AI Hack Mines</h1>
     <div class="grid" id="gameGrid">
         <!-- Ячейки генерируются здесь -->
     </div>
-    <button onclick="generateSignal()">Обновить сигнал</button>
+    <button id="signalButton" onclick="generateSignal()">Получить сигнал</button>
 
     <script>
+        let firstClick = true;
+
         function generateSignal() {
             const grid = document.getElementById('gameGrid');
             grid.innerHTML = '';
@@ -85,14 +89,18 @@
                     cell.classList.add('safe');
                     cell.textContent = '⭐';
                 } else {
-                    cell.textContent = '⬛';
+                    cell.textContent = '?';
                 }
                 grid.appendChild(cell);
             }
-        }
 
-        // Генерируем сигнал при загрузке страницы
-        generateSignal();
+            // Обновляем текст кнопки
+            const signalButton = document.getElementById('signalButton');
+            if (firstClick) {
+                signalButton.textContent = 'Обновить сигнал';
+                firstClick = false;
+            }
+        }
     </script>
 </body>
 </html>
