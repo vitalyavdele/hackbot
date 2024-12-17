@@ -1,9 +1,9 @@
-# Игнорировать всё
+# Игнорировать все файлы
 *
 
-# Исключения (добавить папку и файлы внутри)
+# Исключения — явно добавляемые файлы и папки
 !jetton_project/
+!jetton_project/templates/
+!jetton_project/templates/index.html
 !jetton_project/webapp.py
 !jetton_project/requirements.txt
-!jetton_project/templates/
-!.gitignore
