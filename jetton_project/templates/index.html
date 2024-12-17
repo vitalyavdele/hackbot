@@ -3,40 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jetton Mines Signals</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>HACK - Сигнал Mines</title>
     <style>
-        body { background-color: #1c1c2b; color: #fff; text-align: center; }
-        .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 20px auto; max-width: 300px; }
-        .cell { background-color: #4184f3; color: #fff; font-size: 24px; border-radius: 8px; padding: 10px; }
-        .safe { background-color: #ffc107; color: #1c1c2b; }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 26px;
+            margin-top: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            justify-content: center;
+            margin: 20px auto;
+            width: 250px;
+        }
+
+        .cell {
+            width: 40px;
+            height: 40px;
+            background-color: #2196F3;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        .cell.safe {
+            background-color: gold;
+            color: #333;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
-    <h1>📊 Jetton Mines</h1>
-    <div class="grid" id="mines-grid">
-        <!-- Клетки будут добавляться динамически -->
+    <h1>Сигнал для игры Mines</h1>
+    <div class="grid" id="gameGrid">
+        <!-- Ячейки генерируются здесь -->
     </div>
-    <button class="btn btn-warning" onclick="generateSignal()">Получить сигнал</button>
+    <button onclick="generateSignal()">Обновить сигнал</button>
 
     <script>
         function generateSignal() {
-            const grid = document.getElementById("mines-grid");
-            grid.innerHTML = "";
+            const grid = document.getElementById('gameGrid');
+            grid.innerHTML = '';
             const safeCells = new Set();
             while (safeCells.size < 7) {
                 safeCells.add(Math.floor(Math.random() * 25));
             }
+
             for (let i = 0; i < 25; i++) {
-                const cell = document.createElement("div");
-                cell.classList.add("cell");
+                const cell = document.createElement('div');
+                cell.classList.add('cell');
                 if (safeCells.has(i)) {
-                    cell.textContent = "⭐️";
-                    cell.classList.add("safe");
+                    cell.classList.add('safe');
+                    cell.textContent = '⭐';
+                } else {
+                    cell.textContent = '⬛';
                 }
                 grid.appendChild(cell);
             }
         }
+
+        // Генерируем сигнал при загрузке страницы
+        generateSignal();
     </script>
 </body>
 </html>
